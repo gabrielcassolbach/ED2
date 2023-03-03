@@ -16,3 +16,15 @@ int verifica_arv_vazia (Arvore *a);
 void arv_libera (Arvore* a);
 
 #endif
+
+/*
+Arvore *a = constroi_arv('a',
+                    constroi_arv('b',
+                            cria_arv_vazia(),
+                            constroi_arv('d', cria_arv_vazia(), cria_arv_vazia())),
+                    constroi_arv('c',
+                            constroi_arv('e', cria_arv_vazia(), cria_arv_vazia()),
+                            constroi_arv('f', cria_arv_vazia(), cria_arv_vazia()))
+                    );
+
+*/

@@ -1,5 +1,5 @@
 #include "Arvore.h"
-
+ 
 Arvore *cria_arv_vazia(void)
 {
     return NULL;
@@ -70,8 +70,15 @@ void PosOrderSearch(Arvore* a){
 }
 
 //========= Exercício 3 - pertence ====
+int pertence_arv(Arvore* a, char c){}
 
 //========= Exercício 4 - conta nós ====
+int conta_nos(Arvore* a){
+    if(!verifica_arv_vazia(a))
+        return conta_nos(a -> dir) + conta_nos(a -> esq) + 1;
+    else
+        return 0;
+}
 
 //========= Exercício 5 - calcula altura ====
 
@@ -79,18 +86,8 @@ void PosOrderSearch(Arvore* a){
 
 int main(int argc, char *argv[])
 {
-    Arvore *a = constroi_arv('a',
-                    constroi_arv('b',
-                            cria_arv_vazia(),
-                            constroi_arv('d', cria_arv_vazia(), cria_arv_vazia())),
-                    constroi_arv('c',
-                            constroi_arv('e', cria_arv_vazia(), cria_arv_vazia()),
-                            constroi_arv('f', cria_arv_vazia(), cria_arv_vazia()))
-                    );
-    //PreOrderSearch(a);
-    //InOrderSearch(a);
-    PosOrderSearch(a);
-    printf("\n");
+    Arvore *a = cria_arv_vazia();
+    printf("Quantidade de Nós: %d\n", conta_nos(a));
     arv_libera(a);
     return 0;
 }
