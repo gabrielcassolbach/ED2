@@ -70,7 +70,16 @@ void PosOrderSearch(Arvore* a){
 }
 
 //========= Exercício 3 - pertence ====
-int pertence_arv(Arvore* a, char c){}
+int pertence_arv(Arvore* a, char c){
+    if(!verifica_arv_vazia(a)){
+        if(a -> info == c) 
+            return 1;
+        else
+            return pertence_arv(a -> esq, c) + pertence_arv(a -> dir, c);
+    }else{
+        return 0;
+    }
+}
 
 //========= Exercício 4 - conta nós ====
 int conta_nos(Arvore* a){
@@ -105,8 +114,7 @@ int main(int argc, char *argv[])
                             constroi_arv('e', cria_arv_vazia(), cria_arv_vazia()),
                             constroi_arv('f', cria_arv_vazia(), cria_arv_vazia()))
                     );
-
-    printf("Altura da árvore: %d\n", (a));
+    printf("nós folha: %d\n", conta_nos_folha(a));
     arv_libera(a);
     return 0;
 }
