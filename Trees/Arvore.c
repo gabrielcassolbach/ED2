@@ -81,13 +81,32 @@ int conta_nos(Arvore* a){
 }
 
 //========= Exercício 5 - calcula altura ====
+int calcula_altura_arvore(Arvore* a){}
 
 //========= Exercício 6 - conta folhas ====
+int conta_nos_folha(Arvore* a){
+    if(!verifica_arv_vazia(a)){
+        if(a -> esq == NULL && a -> dir == NULL)
+            return 1;
+        else 
+            return conta_nos_folha(a -> esq) + conta_nos_folha(a -> dir);
+    }else{
+        return 0;
+    }
+}
 
 int main(int argc, char *argv[])
 {
-    Arvore *a = cria_arv_vazia();
-    printf("Quantidade de Nós: %d\n", conta_nos(a));
+    Arvore *a = constroi_arv('a',
+                    constroi_arv('b',
+                            cria_arv_vazia(),
+                            constroi_arv('d', cria_arv_vazia(), cria_arv_vazia())),
+                    constroi_arv('c',
+                            constroi_arv('e', cria_arv_vazia(), cria_arv_vazia()),
+                            constroi_arv('f', cria_arv_vazia(), cria_arv_vazia()))
+                    );
+
+    printf("Altura da árvore: %d\n", (a));
     arv_libera(a);
     return 0;
 }
