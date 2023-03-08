@@ -75,7 +75,7 @@ int pertence_arv(Arvore* a, char c){
         if(a -> info == c) 
             return 1;
         else
-            return pertence_arv(a -> esq, c) + pertence_arv(a -> dir, c);
+            return (pertence_arv(a -> esq, c) || pertence_arv(a -> dir, c));
     }else{
         return 0;
     }
@@ -90,7 +90,13 @@ int conta_nos(Arvore* a){
 }
 
 //========= Exercício 5 - calcula altura ====
-int calcula_altura_arvore(Arvore* a){}
+int calcula_altura_arvore(Arvore* a){
+    if(verifica_arv_vazia(a)) return -1;
+    int dir = calcula_altura_arvore(a -> dir);
+    int esq = calcula_altura_arvore(a -> esq);
+    if(dir < esq) dir = esq; 
+    return(1 + dir);
+}
 
 //========= Exercício 6 - conta folhas ====
 int conta_nos_folha(Arvore* a){
@@ -106,15 +112,15 @@ int conta_nos_folha(Arvore* a){
 
 int main(int argc, char *argv[])
 {
-    Arvore *a = constroi_arv('a',
+    Arvore *a = constroi_arv('b',
                     constroi_arv('b',
                             cria_arv_vazia(),
-                            constroi_arv('d', cria_arv_vazia(), cria_arv_vazia())),
-                    constroi_arv('c',
-                            constroi_arv('e', cria_arv_vazia(), cria_arv_vazia()),
-                            constroi_arv('f', cria_arv_vazia(), cria_arv_vazia()))
+                            constroi_arv('b', cria_arv_vazia(), cria_arv_vazia())),
+                    constroi_arv('a',
+                            constroi_arv('b', cria_arv_vazia(), cria_arv_vazia()),
+                            constroi_arv('b', cria_arv_vazia(), cria_arv_vazia()))
                     );
-    printf("nós folha: %d\n", conta_nos_folha(a));
+    printf("%d\n", pertence_arv(a, 'c'));
     arv_libera(a);
     return 0;
 }
