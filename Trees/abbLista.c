@@ -56,16 +56,17 @@ Arvore* remover (Arvore *a, int v) {
 
 //========= Q1 - busca
 int buscar (Arvore *a, int v) {
-  return 1;  
+    if(a == NULL) return 0;
+    if(v < a -> info) return buscar(a -> esq, v);
+    if(v > a -> info) return buscar(a -> dir, v);
+    return 1; 
 }
 
 //========= Q2 - min =====
 
-
 //========= Q2 - max =====
 
 //========= Q3 - imprime_decrescente =====
-
 
 //========= Q4 - maior ramo =====
 
