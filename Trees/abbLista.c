@@ -53,7 +53,6 @@ Arvore* remover (Arvore *a, int v) {
    return a;
 }
 
-
 //========= Q1 - busca
 int buscar (Arvore *a, int v) {
     if(a == NULL) return 0;
@@ -63,13 +62,42 @@ int buscar (Arvore *a, int v) {
 }
 
 //========= Q2 - min =====
+int min(Arvore *a){
+    if(a != NULL){  
+        if(a -> esq == NULL) return a -> info;
+        return min(a -> esq);
+    } 
+}
 
 //========= Q2 - max =====
+int max(Arvore *a){
+    if(a != NULL){
+        if(a -> dir == NULL) return a -> info;
+        return max(a -> dir);
+    } 
+}
 
+// Condição de parada: a == NULL.
 //========= Q3 - imprime_decrescente =====
+void imprime_decrescente(Arvore *a){
+    if(a != NULL){
+        imprime_decrescente(a -> dir);
+        printf("%d\n", a -> info);
+        imprime_decrescente(a -> esq);
+    }   
+}
 
 //========= Q4 - maior ramo =====
-
+int maior_ramo(Arvore *a){
+    if(a != NULL){
+        int dir = maior_ramo(a -> dir);
+        int esq = maior_ramo(a -> esq);
+        if(esq > dir) dir = esq;
+        return ((a -> info) + dir);
+    }else{
+        return 0;
+    }
+}
 
 void pre_order (Arvore* a) {
    if (a != NULL) {
@@ -80,14 +108,22 @@ void pre_order (Arvore* a) {
 }
 
 int main () {
-   int i;
-   Arvore *a = cria_arvore_vazia ();
-   //inserir
-   //....
-   printf("\n");
-   pre_order (a);	
-   printf("\n");
-   // ====== Q5 ====
+    int i;
+    Arvore *a = cria_arvore_vazia ();
+    a = inserir (a, 50);
+    a = inserir (a, 30);
+    a = inserir (a, 90);
+    a = inserir (a, 20);
+    a = inserir (a, 40);
+    a = inserir (a, 95);
+    a = inserir (a, 10);
+    a = inserir (a, 35);
+    a = inserir (a, 45);
+    printf("\n");
+    pre_order (a);	
+    printf("\n");
+    printf("maior ramo: %d\n", maior_ramo(a));
+    // ====== Q5 ====
 
-   return 0;
+    return 0;
 }
