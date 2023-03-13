@@ -37,34 +37,29 @@ void arv_libera(Arvore *a)
 */
 
 //========= Exercício 2 - pré-ordem ====
+// era possível retirar os dois if's dentro, deixa a recursão mais simples.
 void PreOrderSearch(Arvore* a){
     if(!verifica_arv_vazia(a)){
         printf("%c ", a->info);
-        if(a -> esq != NULL)
-            PreOrderSearch(a -> esq);
-        if(a -> dir != NULL);
-            PreOrderSearch(a -> dir);
+        PreOrderSearch(a -> esq);
+        PreOrderSearch(a -> dir);
     }
 }
 
 //========= Exercício 2 - in-ordem ====
 void InOrderSearch(Arvore* a){
     if(!verifica_arv_vazia(a)){
-        if(a -> esq != NULL)
-            InOrderSearch(a -> esq);
+        InOrderSearch(a -> esq);
         printf("%c ", a->info);
-        if(a -> dir != NULL);
-            InOrderSearch(a -> esq);
+        InOrderSearch(a -> esq);
     }
 }
 
 //========= Exercício 2 - pós-ordem ====
 void PosOrderSearch(Arvore* a){
      if(!verifica_arv_vazia(a)){ 
-        if(a -> esq != NULL)
-            PosOrderSearch(a -> esq);
-        if(a -> dir != NULL);
-            PosOrderSearch(a -> dir);
+        PosOrderSearch(a -> esq);
+        PosOrderSearch(a -> dir);
         printf("%c ", a->info);  
      }
 }
